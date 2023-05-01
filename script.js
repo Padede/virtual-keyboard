@@ -158,8 +158,8 @@ window.addEventListener('keydown', (event) => {
         }
         
     }
-    else if(event.code==="CapsLock" && activecaps==false){
-        alert("dsf")
+    else if(event.code==="CapsLock"){
+        alert("dsf");
         if (lang === 'ru') {
             for (let i=0;i<allkeys.length;i++){
                 Object.values(chars).forEach(keycode => {
@@ -168,7 +168,9 @@ window.addEventListener('keydown', (event) => {
                     inputNode.focus();
 
                     if (keycode.code.toLocaleLowerCase()==s[1]){
-                        allkeys[i].innerHTML=keycode.en.caseUp
+                        if (activecaps==false) allkeys[i].innerHTML=keycode.en.caseUp;
+                        else allkeys[i].innerHTML=keycode.en.caseDown;
+                        
                     }
                 });
             }
@@ -180,7 +182,8 @@ window.addEventListener('keydown', (event) => {
                     let s=q.split(" ");
                     inputNode.focus();
                     if (keycode.code.toLocaleLowerCase()==s[1]){
-                        allkeys[i].innerHTML=keycode.ru.caseUp
+                        if (activecaps==false) allkeys[i].innerHTML=keycode.ru.caseUp;
+                        else allkeys[i].innerHTML=keycode.ru.caseDown;
                     }
                 });
             }    
