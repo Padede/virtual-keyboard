@@ -72,7 +72,6 @@ Object.values(chars).forEach(keycode => {
             keyboard.children[index - 1].appendChild(key);
             break;
         default:
-            // code block
     }
 });
 
@@ -122,10 +121,12 @@ elementsArray.forEach(function(elem) {
        keyFind(elem.className);
     });
 });
+
 let activecaps=false;
+let allkeys=document.querySelectorAll(".keyboard-key");
+
 window.addEventListener('keydown', (event) => {
-    if (event.shiftKey && event.key === 'Alt') {
-        let allkeys=document.querySelectorAll(".keyboard-key");
+    if (event.shiftKey && event.key === 'Alt') {       
         if (lang === 'ru') {
             for (let i=0;i<allkeys.length;i++){
                 Object.values(chars).forEach(keycode => {
@@ -157,8 +158,34 @@ window.addEventListener('keydown', (event) => {
         }
         
     }
-    else if(event.code==="CapsLock"){
+    else if(event.code==="CapsLock" && activecaps==false){
+        alert("dsf")
+        if (lang === 'ru') {
+            for (let i=0;i<allkeys.length;i++){
+                Object.values(chars).forEach(keycode => {
+                    let q=allkeys[i].className;
+                    let s=q.split(" ");
+                    inputNode.focus();
 
+                    if (keycode.code.toLocaleLowerCase()==s[1]){
+                        allkeys[i].innerHTML=keycode.en.caseUp
+                    }
+                });
+            }
+        } 
+        else {
+            for (let i=0;i<allkeys.length;i++){
+                Object.values(chars).forEach(keycode => {
+                    let q=allkeys[i].className;
+                    let s=q.split(" ");
+                    inputNode.focus();
+                    if (keycode.code.toLocaleLowerCase()==s[1]){
+                        allkeys[i].innerHTML=keycode.ru.caseUp
+                    }
+                });
+            }    
+                
+        }
     }
 
     else{
