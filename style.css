@@ -1,0 +1,110 @@
+body .hidden {
+    display: none;
+  }
+  
+.input {
+    background-color:rgb(29, 157, 207);
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 900px;
+    margin: 0 auto;
+    font-size: 10px;
+}
+
+#input{
+    width: 800px;
+}
+
+.info{
+  font-size: 20px;
+}
+
+.keyboard{
+  margin: 0 auto;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  width: 850px;
+  height: 280px;
+}
+
+.keyboard-row{
+  display: flex;
+  margin-bottom: 10px;
+  width: 800px;
+}
+
+.keyboard-key{
+  width: 40px;
+  height: 40px;
+  border-radius: 15%;
+  border:1px solid black;
+  margin-right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.keyboard-key:active{
+  transform: scale(1.95); 
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-in-out; 
+  background-color: aqua;
+}
+
+.active{
+  transform: scale(1.95); 
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  transition: all 0.2s ease-in-out; 
+  background-color: aqua;
+}
+  
+  body .input textarea {
+    font-family: Roboto;
+    padding: 2rem;
+    font-size: 4.2rem;
+    border-radius: 0.5rem;
+  }
+  
+
+
+.backquote{
+  width: 30px;
+}
+
+.tab{
+  width: 60px;
+}
+
+.capslock{
+  width: 80px;
+}
+
+.shiftleft{
+  width: 100px;
+}
+
+.controlleft{
+  width: 50px;
+}
+
+.backspace{
+  width: 130px;
+}
+
+.enter{
+  width: 140px;
+}
+
+.shiftright{
+  width: 120px;
+}
+
+.space{
+  width: 310px;
+}
