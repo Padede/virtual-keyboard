@@ -77,6 +77,9 @@ Object.values(chars).forEach(keycode => {
 
 
 let elementsArray = document.querySelectorAll(".keyboard-key");
+let activecaps=false;
+let allkeys=document.querySelectorAll(".keyboard-key");
+
 
 function keyFind(elem){
     Object.values(chars).forEach(keycode => {
@@ -100,6 +103,41 @@ function keyFind(elem){
             else if (s[1]=="arrowup") {
                 inputNode.selectionStart = inputNode.selectionEnd = 0;
             }
+            else if (s[1]=="capslock"){
+                if (lang === 'ru') {
+                    for (let i=0;i<allkeys.length;i++){
+                        Object.values(chars).forEach(keycode => {
+                            let q=allkeys[i].className;
+                            let s=q.split(" ");
+                            inputNode.focus();
+        
+                            if (keycode.code.toLocaleLowerCase()==s[1]){
+                                if (activecaps==false) {allkeys[i].innerHTML=keycode.ru.caseUp;}
+                                else {allkeys[i].innerHTML=keycode.ru.caseDown;}
+                                
+                            }
+                        });            
+                    }
+                    if (activecaps==false) activecaps=true;
+                    else activecaps=false;
+                } 
+                else {
+                    for (let i=0;i<allkeys.length;i++){
+                        Object.values(chars).forEach(keycode => {
+                            let q=allkeys[i].className;
+                            let s=q.split(" ");
+                            inputNode.focus();
+                            if (keycode.code.toLocaleLowerCase()==s[1]){
+                                if (activecaps==false) {allkeys[i].innerHTML=keycode.en.caseUp;}
+                                else {allkeys[i].innerHTML=keycode.en.caseDown;}
+                            }
+                        });
+                        
+                    }    
+                    if (activecaps==false) activecaps=true;
+                    else activecaps=false;   
+                }
+            }
             else if (s[1]=="shiftleft" || s[1]=="controlleft" || s[1]=="controlright" || s[1]=="shiftright" || s[1]=="altleft" || s[1]=="altright" || s[1]=="metaleft"){}
             else {
                 if (lang=="ru"){
@@ -122,10 +160,9 @@ elementsArray.forEach(function(elem) {
     });
 });
 
-let activecaps=false;
-let allkeys=document.querySelectorAll(".keyboard-key");
 
 window.addEventListener('keydown', (event) => {
+    let button;
     if (event.shiftKey && event.key === 'Alt') {       
         if (lang === 'ru') {
             for (let i=0;i<allkeys.length;i++){
@@ -159,43 +196,14 @@ window.addEventListener('keydown', (event) => {
         
     }
     if(event.key==="CapsLock"){
-        if (lang === 'ru') {
-            for (let i=0;i<allkeys.length;i++){
-                Object.values(chars).forEach(keycode => {
-                    let q=allkeys[i].className;
-                    let s=q.split(" ");
-                    inputNode.focus();
-
-                    if (keycode.code.toLocaleLowerCase()==s[1]){
-                        if (activecaps==false) {allkeys[i].innerHTML=keycode.ru.caseUp;}
-                        else {allkeys[i].innerHTML=keycode.ru.caseDown;}
-                        
-                    }
-                });            
-            }
-            if (activecaps==false) activecaps=true;
-            else activecaps=false;
-        } 
-        else {
-            for (let i=0;i<allkeys.length;i++){
-                Object.values(chars).forEach(keycode => {
-                    let q=allkeys[i].className;
-                    let s=q.split(" ");
-                    inputNode.focus();
-                    if (keycode.code.toLocaleLowerCase()==s[1]){
-                        if (activecaps==false) {allkeys[i].innerHTML=keycode.en.caseUp;}
-                        else {allkeys[i].innerHTML=keycode.en.caseDown;}
-                    }
-                });
-                
-            }    
-            if (activecaps==false) activecaps=true;
-            else activecaps=false;   
-        }
+        button = document.querySelector(`.${event.code.toLowerCase()}`);
+        if (activecaps==false)  button.classList.add('active');
+        else button.classList.remove('active');
+        keyFind("123 capslock");
     }
 
     else{
-        let button = document.querySelector(`.${event.code.toLowerCase()}`);
+        button = document.querySelector(`.${event.code.toLowerCase()}`);
         button.classList.add('active');
         setTimeout(() => button.classList.remove('active'), 100);
         keyFind(event.code.toLowerCase())
